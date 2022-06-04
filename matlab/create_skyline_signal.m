@@ -11,3 +11,12 @@ while (length(skyline_signal) < number_samples)
     
     skyline_signal = [skyline_signal; random_signal];
 end
+
+if (length(skyline_signal) < number_samples)
+    skyline_signal(number_samples) = 0;
+elseif (length(skyline_signal) > number_samples)
+    skyline_signal = skyline_signal(1:number_samples);
+end
+
+sampletime = 0:1/fs:t_duration-1/fs;
+skyline_signal_ts = timeseries(skyline_signal, sampletime);
